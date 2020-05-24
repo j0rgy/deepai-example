@@ -102,6 +102,7 @@ def colorize():
             headers={'api-key': deepaikey}
         )
         
+        print("DeepAI key: " + deepaikey)
         print(response.json)
         colorized_img = response.json()['output_url']
     
