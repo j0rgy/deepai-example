@@ -39,7 +39,7 @@
     {% endif %}
     
     <p>
-        <h4>{% if not caption %}Try it out! Select any image:{% endif %}Select another image:</h4>
+        <h4>{% if not caption %}Try it out! Select any image:{% else %}Select another image:{% endif %}</h4>
         <form action="/caption" method="post" enctype="multipart/form-data">
             <div class="form-row">
                 <label for="image-url" class="col-xs-4 col-sm-2 col-form-label">Image from URL</label>
