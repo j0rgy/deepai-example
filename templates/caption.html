@@ -42,7 +42,7 @@
         <h4>{% if not caption %}Try it out! {% endif %}Select an image:</h4>
         <form action="/caption" method="post" enctype="multipart/form-data">
             <div class="form-row">
-                <label for="image-url" class="col-2 col-form-label">Image from URL</label>
+                <label for="image-url" class="col-xs-4 col-sm-2 col-form-label">Image from URL</label>
                 <div class="form-group-row col-md-5">
                     <input id="image-url" autocomplete="off" autofocus class="form-control mb-2 mr-2" name="image-url" placeholder="Enter Image URL" type="url">
                 </div>
@@ -51,7 +51,7 @@
                 </div>
             </div>
             <div class="form-row">
-                <label for="user-file" class="col-2 col-form-label">Upload Image</label>
+                <label for="user-file" class="col-xs-4 col-sm-2 col-form-label">Upload Image</label>
                 <div class="form-group-row col-md-5">
                     <input type="file" class="form-control-file mb-2 mr-2" name="user_file">
                 </div>
@@ -60,7 +60,7 @@
                 </div>
             </div>
             <div class="form-row">
-                <label for="random-image-button" class="col-2 col-form-label">Random Image</label>
+                <label for="random-image-button" class="col-xs-4 col-sm-2 col-form-label">Random Image</label>
                 <div class="form-group-row col-md-4">
                     <button class="btn btn-primary mb-2" id="random-button" type="submit" value="random" name="submit-button">Randomize</button>
                 </div>
