@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block script %}
+    <script>
+        nav_element = document.getElementById("nav-caption");
+        nav_element.className = "nav-item active";  
+    </script>
+{% endblock %}
+
+{% block title %}
+    Caption
+{% endblock %}
+
+{% block main %}
+
+    {% if session.user_id %}
+        This is the logged in homepage.
+    {% else %}
+    
+    <h1 class="display-3">Caption</h1>
+    
+    {% if not caption %}
+    
+        <div class="copy">
+            <h4>How does it work?</h4>
+            Caption uses <a href="https://github.com/karpathy/neuraltalk2">NeuralTalk2</a>, a machine learning system, to automatically create captions for any image. Its accuracy is mostly good, and sometimes entertaining.
+        </div>
+    
+    {% endif %}
+    
+    {% if caption %}
+            <div id="caption-container">
+                <p class="caption">{{ caption }}</p>
+            
+                <div id="caption-image">
+                    <img src="{{ img }}" class="img-fluid" width=600px>
+                </div>
+            </div>
+    {% endif %}
+    
+    <p>
+        <h4>{% if not caption %}Try it out! {% endif %}Select an image:</h4>
+        <form action="/caption" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+                <label for="image-url" class="col-2 col-form-label">Image from URL</label>
+                <div class="form-group-row col-md-5">
+                    <input id="image-url" autocomplete="off" autofocus class="form-control mb-2 mr-2" name="image-url" placeholder="Enter Image URL" type="url">
+                </div>
+                <div class="form-group-row col-md-4">
+                    <button class="btn btn-primary mb-2" id="url-button" type="submit" value="url" name="submit-button">Get Image</button>
+                </div>
+            </div>
+            <div class="form-row">
+                <label for="user-file" class="col-2 col-form-label">Upload Image</label>
+                <div class="form-group-row col-md-5">
+                    <input type="file" class="form-control-file mb-2 mr-2" name="user_file">
+                </div>
+                <div class="form-group-row col-md-4">
+                    <button class="btn btn-primary mb-2" id="upload-button" type="submit" name="submit-button" value="upload">Upload Image</button>
+                </div>
+            </div>
+            <div class="form-row">
+                <label for="random-image-button" class="col-2 col-form-label">Random Image</label>
+                <div class="form-group-row col-md-4">
+                    <button class="btn btn-primary mb-2" id="random-button" type="submit" value="random" name="submit-button">Randomize</button>
+                </div>
+            </div>
+        </form>
+    </p>    
+        
+        
+    {% endif %}
+
+{% endblock %}

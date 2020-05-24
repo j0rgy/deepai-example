@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+{% block script %}
+    <script>
+            nav_element = document.getElementById("nav-colorize");
+            nav_element.className = "nav-item active";  
+    </script>
+
+{% endblock %}
+
+{% block title %}
+    Colorize
+{% endblock %}
+
+{% block main %}
+
+    {% if session.user_id %}
+        This is the logged in homepage.
+    {% else %}
+    
+    <h1 class="display-3">Colorize</h1>
+    {% if not img %}
+    
+        <div class="copy">
+            <h4>How does it work?</h4>
+            This <a href="https://deepai.org/machine-learning-model/colorizer">image colorization API</a> is a deep learning model that has been trained on pairs of color images with their grayscale counterpart. After hours of training, the models learns how to add color back to black and white images.
+        </div>
+    
+    {% endif %}
+    
+    {% if img %}
+        <div class="row" style="margin-top:30px">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Before</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                        <a href="{{ img }}"><img src="{{ img }}" class="img-fluid"></a>
+                     </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">After</h5>
+                        <a href="{{ colorized_img }}"><img src="{{ colorized_img }}" class="img-fluid"></a>
+                     </div>
+                </div>
+            </div>
+        </div>
+        
+    {% endif %}
+    
+    <p>
+        <h4>{% if not img %}Try it out! Select a black and white image:{% else %}Select another black and white image:{% endif %}</h4>
+        <form action="/colorize" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+                <label for="image-url" class="col-2 col-form-label">Image from URL</label>
+                <div class="form-group-row col-md-5">
+                    <input id="image-url" autocomplete="off" autofocus class="form-control mb-2 mr-2" name="image-url" placeholder="Enter Image URL" type="url">
+                </div>
+                <div class="form-group-row col-md-4">
+                    <button class="btn btn-primary mb-2" id="url-button" type="submit" value="url" name="submit-button">Get Image</button>
+                </div>
+            </div>
+            <div class="form-row">
+                <label for="user-file" class="col-2 col-form-label">Upload Image</label>
+                <div class="form-group-row col-md-5">
+                    <input type="file" class="form-control-file mb-2 mr-2" name="user_file">
+                </div>
+                <div class="form-group-row col-md-4">
+                    <button class="btn btn-primary mb-2" id="upload-button" type="submit" name="submit-button" value="upload">Upload Image</button>
+                </div>
+            </div>
+            <div class="form-row">
+                <label for="random-image-button" class="col-2 col-form-label">Random Image</label>
+                <div class="form-group-row col-md-4">
+                    <button class="btn btn-primary mb-2" id="random-button" type="submit" value="random" name="submit-button">Randomize</button>
+                </div>
+            </div>
+        </form>
+    </p>    
+        
+        
+    {% endif %}
+
+{% endblock %}
