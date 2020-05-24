@@ -102,8 +102,6 @@ def colorize():
             headers={'api-key': deepaikey}
         )
         
-        print("DeepAI key: " + deepaikey)
-        print(response.json)
         colorized_img = response.json()['output_url']
     
         return render_template("colorize.html", img=img, colorized_img=colorized_img)
